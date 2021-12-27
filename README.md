@@ -1,5 +1,7 @@
 # fftstylediver
 
+Experimental software. No support to be expected.
+
 Start from scratch or from an init image. Let the image grow towards
 
 * a content image
@@ -27,7 +29,10 @@ Example
  --tw text weight
  --show display progress in a window on local screen
  --showSize set size for the local window
+ --imageSize size for the generated images
  ```
+
+There are deeper settings, too, but difficult to explain. See the code...
  
  
  
