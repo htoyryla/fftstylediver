@@ -232,6 +232,8 @@ def to_valid_rgb(image_f, colors=1., decorrelate=True):
     return inner
 '''
 
+# part based on aphantasia ends here
+
 # define display routine
 
 def show_on_screen(image_tensor, window="out", size=0):
