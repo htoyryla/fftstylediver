@@ -104,6 +104,11 @@ def pixel_image(shape, sd=2.):
         return [tensor], lambda: tensor
 '''
 
+def torch_version():
+    v = torch.__version__.split('.')
+    v = int(v[1])
+    return v
+
 # From https://github.com/tensorflow/lucid/blob/master/lucid/optvis/param/spatial.py
 
 def rfft2d_freqs(h, w):
@@ -147,13 +152,12 @@ def fft_image(shape, sd=0.01, decay_power=1.0, resume=None): # decay ~ blur
     scale *= np.sqrt(h*w)
     scale /= scale.max()
     scale = torch.tensor(scale).float()[None, None, ..., None].cuda()
-    print(scale.shape)
 
     def inner(shift=None, contrast=1.):
         scaled_spectrum_t = scale * spectrum_real_imag_t
         if shift is not None:
            scaled_spectrum_t += scale * shift
-        if float(torch.__version__[:3]) < 1.8:
+        if torch_version() < 8:
             image = torch.irfft(scaled_spectrum_t, 2, normalized=True, onesided=False)
         else:
             if type(scaled_spectrum_t) is not torch.complex64:
@@ -199,10 +203,10 @@ def img2fft(img_in, decay=1., colors=1.):
     h, w = img_in.shape[2], img_in.shape[3]
     
     with torch.no_grad():
-        if float(torch.__version__[:3]) < 1.8:
+        if torch_version() < 8:
             spectrum = torch.rfft(img_in, 2, normalized=True, onesided=False) # 1.7
         else:
-            spectrum = torch.fft.rfftn(img_in, s=(h, w), dim=[2,3], norm='ortho') # 1.8
+            spectrum = torch.fft.fftn(img_in, s=(h, w), dim=[2,3], norm='ortho') # 1.8
             spectrum = torch.view_as_real(spectrum)
         spectrum = un_spectrum(spectrum, decay_power=decay)
         spectrum *= opt.initmult / opt.sd 
@@ -231,8 +235,6 @@ def to_valid_rgb(image_f, colors=1., decorrelate=True):
         return torch.sigmoid(image)
     return inner
 '''
-
-# part based on aphantasia ends here
 
 # define display routine
 
