@@ -1,5 +1,13 @@
 # fftstylediver
 
+Start from scratch or from an init image. Let the image grow towards
+
+1 a content image
+2 the "style" of a style image
+3 a text prompt
+
+Familiarity with Gram matrix based style transfer and CLIP based image synthesis is recommended.
+
 Use pytorch 1.7
 
 Example
