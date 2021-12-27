@@ -31,6 +31,8 @@ Example
  --showSize set size for the local window
  --imageSize size for the generated images
  ```
+ 
+ !162E1327-C20C-49F8-B4CC-17DB9623FAE8.png
 
 There are deeper settings, too, but difficult to explain. See the code...
  
