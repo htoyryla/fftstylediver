@@ -2,13 +2,15 @@
 
 Start from scratch or from an init image. Let the image grow towards
 
-1 a content image
-2 the "style" of a style image
-3 a text prompt
+* a content image
+* the "style" of a style image
+* a text prompt
+
+each with its own weight.
 
 Familiarity with Gram matrix based style transfer and CLIP based image synthesis is recommended.
 
-Use pytorch 1.7
+Use pytorch 1.7, does not work on higher versions (differences in the fft implementation)
 
 Example
 
