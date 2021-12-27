@@ -196,7 +196,7 @@ def un_spectrum(spectrum, decay_power):
 def img2fft(img_in, decay=1., colors=1.):
     img_in = torch.Tensor(img_in).cuda().permute(2,0,1).unsqueeze(0) / 255.
     img_in = geometry.transform.resize(img_in, (opt.imageSize, opt.imageSize))
-    h, w = img_in.shape[0], img_in.shape[1]
+    h, w = img_in.shape[2], img_in.shape[3]
     
     with torch.no_grad():
         if float(torch.__version__[:3]) < 1.8:
