@@ -12,7 +12,8 @@ each with its own weight.
 
 Familiarity with Gram matrix based style transfer and CLIP based image synthesis is recommended.
 
-Use pytorch 1.7, does not work on higher versions (differences in the fft implementation)
+~~Use pytorch 1.7, does not work on higher versions (differences in the fft implementation)~~
+Now works also with pytorch 1.10
 
 Example
 
